@@ -44,6 +44,23 @@ virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又�
   简洁写法:
     @click='xxx'
     
+ 5.生命周期   
+<img src="https://cn.vuejs.org/images/lifecycle.png"></img>
+
+ 生命周期钩子函数：
+ 
+ 1). 初始化显示
+    * beforeCreate()  在此函数中还没有实现对 data 数据代理 所有无法使用 this.data定义的属性 
+    * created()   已经完成 对事件监听，及数据劫持  在此函数中可以访问 this. data定义的属性
+    * beforeMount() 已完成 this.$el 的定义
+    * mounted()   已经 完成 this.$el 对于的html模板 替换
+  2). 更新状态
+    * beforeUpdate()   数据更新前
+    * updated()   数据已经完成更新
+  3). 销毁vue实例: vm.$destory()
+    * beforeDestory() 
+    * destoryed()
+    
 # vue 的扩展插件(库):
 
 * vue-cli: vue脚手架
