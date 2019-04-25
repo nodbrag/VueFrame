@@ -87,7 +87,7 @@ virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又�
 		<div>{{myData | filterName}}</div>
 		<div>{{myData | filterName(arg)}}</div>
 	
- 7. vue内置指令
+7. vue内置指令
  
 	v-text/v-html: 指定标签体
     	* v-text : 当作纯文本
