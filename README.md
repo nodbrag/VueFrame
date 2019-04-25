@@ -12,6 +12,9 @@
 
 3.虚拟DOM技术
 
+virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又通过在这个虚拟DOM上实现了一个 diff 算法找出最小变更，再把这些变
+更写入实际的DOM中。这个虚拟DOM以JS结构的形式存在，计算性能会比较好，而且由于减少了实际DOM操作次数，性能会有较大提升
+
 学习参考文章
 <a target='_blank' href="https://juejin.im/entry/591a5f14128fe1005cdad9b5">vue 的 Virtual Dom 实现 - snabbdom 解密</a>
 
