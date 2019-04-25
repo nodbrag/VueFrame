@@ -5,7 +5,7 @@
     Vue.myGlobalMethod = function () {
       console.log('Vue函数对象的myGlobalMethod()')
     }
-
+    Vue.prototype.msg="hello";
     // 2. 添加全局资源
     Vue.directive('my-directive',function (el, binding) {
       el.textContent = 'my-directive----'+binding.value

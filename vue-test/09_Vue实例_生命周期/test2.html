@@ -25,7 +25,7 @@
 
 <div id="test">
   <button @click="destroyVue">destory vue</button>
-  <p v-if="isShow">尚硅谷IT教育</p>
+  <p v-if="isShow">测试生命周期</p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
@@ -37,24 +37,28 @@
     },
 
     beforeCreate() {
+
       console.log('beforeCreate()')
     },
 
     created() {
+
       console.log('created()')
     },
-
+   //挂载之前里面html元素是没有改变的
     beforeMount() {
+      alert(this.$el.innerHTML);
       console.log('beforeMount()')
     },
-
+  // 挂载之后已经替换el
     mounted () {
+      alert(this.$el.innerHTML);
       console.log('mounted()')
       // 执行异步任务
-      this.intervalId = setInterval(() => {
+      /*this.intervalId = setInterval(() => {
         console.log('-----')
         this.isShow = !this.isShow
-      }, 1000)
+      }, 1000)*/
     },
 
 
