@@ -133,6 +133,8 @@ virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又�
 
 * vue-cli: vue脚手架
 
+<img src='https://github.com/nodbrag/VueFrame/blob/master/img/struct.png'></img>
+
 * vue-resource(axios): ajax请求
 
 * vue-router: 路由
