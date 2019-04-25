@@ -2,7 +2,7 @@
 # vue 特点
 
 1.遵循mvvm 模式
-
+<img src='https://github.com/nodbrag/VueFrame/blob/master/img/mvvm.png'></img>
 学习参考文章<a target='_blank' href="https://github.com/DMQ/mvvm">剖析vue实现原理，自己动手实现mvvm</a>
 
 2.数据双向绑定技术
