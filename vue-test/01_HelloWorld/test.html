@@ -23,7 +23,7 @@
   <p>hello {{msg}}</p><!--大括号表达式-->
 </div>
 
-<script type="text/javascript" src="../js/vue.js"></script>
+<script src="https://unpkg.com/vue"></script>
 <script type="text/javascript">
 
   let obj = { newkey:"ok"};
@@ -44,7 +44,7 @@
 
   //设置值
   obj.newKey = 'change value';
-alert(obj.newKey);
+
   console.log( obj.newKey ); //change val
 
   const vm = new Vue({ // 配置对象 options
@@ -52,6 +52,22 @@ alert(obj.newKey);
     el: '#test',  // element: 指定用vue来管理页面中的哪个标签区域
     data: {
       msg: 'atguigu'
+    },
+
+    created:function () {
+      alert("已经创建完实例");
+    },
+    beforeMounte:function(){
+      alert("挂载前")
+    },
+    mounted:function () {
+      alert("挂载完!");
+    },
+    beforeUpdate:function () {
+      alert("更新开始");
+    },
+    updated:function () {
+      alert("更新完");
     }
   })
 </script>
