@@ -50,6 +50,7 @@ virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又�
  生命周期钩子函数：
  
  1). 初始化显示
+ 
     * beforeCreate()  在此函数中还没有实现对 data 数据代理 所有无法使用 this.data定义的属性 
     
     * created()   已经完成 对事件监听，及数据劫持  在此函数中可以访问 this. data定义的属性
