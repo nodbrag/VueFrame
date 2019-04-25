@@ -17,7 +17,7 @@
 
 <a target='_blank' href="https://github.com/DDFE/DDFE-blog/issues/18">Vue 2.0 的 virtual-dom 实现简析</a>
 
-4.基于模板化
+4.基于html模板语法
 
 * 模板的理解:
   动态的html页面
