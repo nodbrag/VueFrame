@@ -43,4 +43,21 @@ virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又�
     v-on:click='xxx'
   简洁写法:
     @click='xxx'
+    
+# vue 的扩展插件(库):
 
+* vue-cli: vue脚手架
+
+* vue-resource(axios): ajax请求
+
+* vue-router: 路由
+
+* vuex: 状态管理
+
+* vue-lazyload: 图片懒加载
+
+* mint-ui: 基于vue的组件库(移动端)
+
+* element-ui: 基于vue的组件库(PC端)
+		
+ 
