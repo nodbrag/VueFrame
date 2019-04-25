@@ -71,6 +71,62 @@ virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又�
     
     * destoryed()
     
+    
+ 6. 自定义过滤器
+ 
+* 理解
+	对需要显示的数据进行格式化后再显示
+
+* 编码
+	1). 定义过滤器
+		Vue.filter(filterName, function(value[,arg1,arg2,...]){
+		  // 进行一定的数据处理
+		  return newValue
+		})
+	2). 使用过滤器
+		<div>{{myData | filterName}}</div>
+		<div>{{myData | filterName(arg)}}</div>
+	
+ 7. vue内置指令
+ 
+	v-text/v-html: 指定标签体
+    	* v-text : 当作纯文本
+		* v-html : 将value作为html标签来解析
+		
+	v-if v-else v-show: 显示/隐藏元素
+		* v-if : 如果vlaue为true, 当前标签会输出在页面中
+		* v-else : 与v-if一起使用, 如果value为false, 将当前标签输出到页面中
+		* v-show: 就会在标签中添加display样式, 如果vlaue为true, display=block, 否则是none
+		
+	v-for : 遍历
+		* 遍历数组 : v-for="(person, index) in persons"   
+		* 遍历对象 : v-for="value in person"   $key
+		
+	v-on : 绑定事件监听
+		* v-on:事件名, 可以缩写为: @事件名
+		* 监视具体的按键: @keyup.keyCode   @keyup.enter
+		* 停止事件的冒泡和阻止事件默认行为: @click.stop   @click.prevent
+		* 隐含对象: $event
+		
+	v-bind : 强制绑定解析表达式  
+		* html标签属性是不支持表达式的, 就可以使用v-bind
+		* 可以缩写为:  :id='name'
+		* :class
+		  * :class="a"
+			* :class="{classA : isA, classB : isB}"
+			* :class="[classA, classB]"
+		* :style
+			:style="{color : color}"
+			
+	v-model
+		* 双向数据绑定
+		* 自动收集用户输入数据
+		
+	ref : 标识某个标签
+		* ref='xxx'
+		* 读取得到标签对象: this.$refs.xxx
+		
+		
 # vue 的扩展插件(库):
 
 * vue-cli: vue脚手架
