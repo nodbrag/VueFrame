@@ -3,12 +3,7 @@
   "description": "A Vue.js project",
   "author": "Chris Fritz <chrisvfritz@gmail.com>",
   "private": true,
-  "scripts": {
-    "dev": "webpack-dev-server --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "predeploy": "npm run build",
-    "deploy": "surge --project . --domain vue-2-simple-routing-example.surge.sh"
-  },
+  
   "dependencies": {
     "vue": "^2.3.3"
   },
