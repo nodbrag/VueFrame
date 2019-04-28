@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <div>{{title}}</div>
+    </div>
+    <script type="module">
+
+        const NotFound = { template: '<p>Page not found</p>' }
+        const Home = { template: '<p>home page</p>' }
+        const About = { template: '<p>about page</p>' }
+
+       const vm = new Vue({
+           el: '#app',
+           data:{
+               title:"aaaaa"
+           },
+           render (h) {
+               return h(About)
+           }
+       });
+    </script>
+</body>
+</html>
