@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面一</title>
+</head>
+<body>
+    <button  onclick="go()"  > 跳转页面哦</button>
+<script type="text/javascript">
+
+    window.addEventListener('popstate', (event) => {
+        console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    });
+
+     function go() {
+        // history.pushState({page: 1}, "title 1", "?page=1");
+         //window.history.pushState("aa","测试页面","index2.html");
+         window.location.hash="#aa"
+     }
+
+    function matchAndUpdate () {
+        // todo 匹配 hash 做 dom 更新操作
+        alert(2);
+    }
+
+    window.addEventListener('hashchange', matchAndUpdate)
+</script>
+  <a  hre="#aa">sss</a>
+</body>
+</html>
