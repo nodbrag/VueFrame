@@ -137,7 +137,9 @@ virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又�
 
 * vue-resource(axios): ajax请求
 
-* vue-router: 路由 <a href="https://router.vuejs.org/zh/guide/#html">官方API</a>
+* vue-router: 路由 
+
+  学习参考 <a href="https://router.vuejs.org/zh/guide/#html">官方API</a>  <a href='https://github.com/nodbrag/VueFrame/tree/master/vue-routing-example/'>路由使用案例 </a>
 
 * vuex: 状态管理
 
