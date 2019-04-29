@@ -142,7 +142,8 @@ virtual-dom(后文简称vdom)  映射生成虚拟的JavaScript DOM结构，又�
   分析vue-router 源码可以分析路由机制
   
   1.显示基于 hash (带#)和 history(html5 特性) 两种模式 进行浏览器url 切换 并被浏览器记录 并通过分别注册监听 hashchange，popstate 事件切换对应vue组件
-  2. vue-router 是基于vue 插件 和混入机制 进行对vue 全局属性方法进行定义  这样我们在使用vue-router 必须使用 Vue.use（router）这样会自动调用install方法 对应Vue 的全局定义 及 路由初始化等  这样 就可以全局或vue实例对路由调用 如：$.router  具体查看 源码install <a href="https://github.com/vuejs/vue-router/blob/dev/src/install.js"> 点击查看</a>
+ 
+ 2. vue-router 是基于vue 插件 和混入机制 进行对vue 全局属性方法进行定义  这样我们在使用vue-router 必须使用 Vue.use（router）这样会自动调用install方法 对应Vue 的全局定义 及 路由初始化等  这样 就可以全局或vue实例对路由调用 如：$.router  具体查看 源码install <a href="https://github.com/vuejs/vue-router/blob/dev/src/install.js"> 点击查看</a>
 
   3.vue-router 编写了相应的匹配机制 用来匹配当前路由 <a href="https://github.com/vuejs/vue-router/blob/dev/src/create-matcher.js">匹配源码</a> 最后通过 Vue 的reader：h=h( component, data, children) 呈现 并替换到 自定义组件router-view 。
   
