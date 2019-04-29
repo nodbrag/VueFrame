@@ -6,6 +6,8 @@
 
 效果如下图
 
+<img src="https://github.com/nodbrag/VueFrame/blob/master/vue-demo/src/assets/images/demo-ms.png" >
+
 ## Build Setup
 
 ``` bash
