@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+基于 vue2.0 + vue-router + elementUI + axios 编写后台管理系统demo
+
+效果如下图
+
 ## Build Setup
 
 ``` bash

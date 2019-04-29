@@ -3,13 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
-Vue.config.productionTip = false
-
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import '@/assets/iconfont.css'
+import '@/assets/styles/main.scss'
+Vue.config.productionTip = false;
+/*全局注入elementui组件*/
+Vue.use(ElementUI);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
-})
+  components:{
+    App
+  },
+  template: '<App>'
+});
