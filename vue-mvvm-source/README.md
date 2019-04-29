@@ -1,5 +1,7 @@
 ## 原理图
- <img src="https://github.com/nodbrag/VueFrame/edit/master/vue-mvvm-source/原理图.png">
+
+ <img src="https://github.com/nodbrag/VueFrame/blob/master/vue-mvvm-source/%E5%8E%9F%E7%90%86%E5%9B%BE.png">
+ 
 ## 1. 准备
 	1.[].slice.call(lis): 将伪数组转换为真数组
 	2.node.nodeType: 得到节点类型
