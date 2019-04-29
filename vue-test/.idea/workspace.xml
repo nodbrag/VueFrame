@@ -2,41 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a3d4414-e56f-4519-bf79-d30c17a3058d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/fonts/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/fonts/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/fonts/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/fonts/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/iconfont.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/images/book.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/images/cover.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/images/forest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/images/girl.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/images/hill.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/images/sunrise.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/images/sunshine.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/login-bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/assets/styles/main.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/components/DeviceList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/components/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/components/RoleList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/components/UserChangePwd.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/components/UserList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/components/UserProfile.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/lib/BaseEditHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/lib/Http.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/lib/util.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vue-demo/src/router/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-demo/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/build/webpack.dev.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-demo/build/webpack.dev.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-demo/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-demo/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-demo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-demo/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-demo/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vue-demo/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../vue-demo/src/router/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -95,11 +61,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/14_页面跳转/index1.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="570">
               <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-1881">
+                <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -149,10 +127,11 @@
         <option value="$PROJECT_DIR$/单页面组件/home.vue" />
         <option value="$PROJECT_DIR$/单页面组件/index.html" />
         <option value="$PROJECT_DIR$/14_页面跳转/index1.html" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="130" />
     <option name="y" value="265" />
     <option name="width" value="1550" />
@@ -247,7 +226,7 @@
       <workItem from="1556242355878" duration="6449000" />
       <workItem from="1556413165097" duration="596000" />
       <workItem from="1556414616850" duration="12396000" />
-      <workItem from="1556500091489" duration="1207000" />
+      <workItem from="1556500091489" duration="1871000" />
     </task>
     <task id="LOCAL-00001" summary="add vue-test">
       <created>1556154604355</created>
@@ -267,10 +246,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35476000" />
+    <option name="totallyTimeSpent" value="36140000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49858356" visible="true" weight="0.24966975" />
@@ -509,6 +488,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-1881">
+            <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
