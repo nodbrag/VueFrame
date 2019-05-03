@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ mes }}</h1>
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -80,16 +80,25 @@
         </a>
       </li>
     </ul>
+    <div class="row" v-show="users.length>0">
+      <div class="card" v-for="(user, index) in users" :key="index">
+      {{user.userName + index}}
+      </div>
+    </div>
   </div>
+
 </template>
 
 <script>
+  import { mapGetters,mapActions } from "vuex";
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  computed: {
+    ...mapGetters(['mes', 'users'])
+  },
+  created() {
+    this.getUserInfo();
+  },methods:{
+    ...mapActions(['getUserInfo'])
   }
 }
 </script>
