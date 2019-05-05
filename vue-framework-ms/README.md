@@ -1,7 +1,7 @@
 # vue-framework-ms
 
 > A Vue.js project
-搭建 基于 vue+vuex+vue-router+ElementUI 管理系统
+搭建 基于 es6-> vue+vuex+vue-router+ElementUI 管理系统
 ## Build Setup
 
 ``` bash
