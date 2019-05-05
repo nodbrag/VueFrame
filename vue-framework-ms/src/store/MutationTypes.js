@@ -14,6 +14,12 @@ export  default  class MutationTypes {
    * @type {string}
    */
  static  SET_SELECTUSERS='SET_SELECTUSERS';
+  /**
+   * 用户编辑FROM
+   * @type {string}
+   */
+ static SET_EDITFORM='SET_EDITFORM';
+
  // TOP 组件模块
   /**
    * 设置全屏标识状态

@@ -42,7 +42,7 @@
 
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
-            <el-button size="small" @click="showEditDialog(scope.$index,scope.row)">编辑</el-button>
+            <el-button size="small" @click="showEditDialog(scope.row)">编辑</el-button>
             <el-button type="danger" @click="delUser(scope.$index,scope.row)" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -56,13 +56,13 @@
       </el-col>
 
       <!--新增界面-->
-      <el-dialog title="新增用户" :visible.sync ="addFormVisible" :close-on-click-modal="false">
+      <el-dialog title="新增用户" :visible.sync ="addFormVisible"  :before-close="closeAddDialog">
         <el-form :model="addForm" label-width="80px" :rules="editFormRules" ref="addForm">
-          <el-form-item label="用户名" prop="loginname">
-            <el-input v-model="addForm.loginname" auto-complete="off"></el-input>
+          <el-form-item label="用户名" prop="userCode">
+            <el-input v-model="addForm.userCode" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="真实姓名" prop="name">
-            <el-input v-model="addForm.name" auto-complete="off"></el-input>
+          <el-form-item label="真实姓名" prop="userName">
+            <el-input v-model="addForm.userName" auto-complete="off"></el-input>
           </el-form-item>
 
           <el-form-item label="用户类型" prop="type">
@@ -78,22 +78,22 @@
           <el-form-item label="电子邮件" prop="email">
             <el-input v-model="addForm.email" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="联系电话" prop="phone">
-            <el-input v-model="addForm.phone" auto-complete="off"></el-input>
+          <el-form-item label="联系电话" prop="telephone">
+            <el-input v-model="addForm.telephone" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-          <el-button @click.native="addFormVisible = false">取消</el-button>
-          <el-button type="primary" @click.native="addSubmit" :loading="addLoading">提交</el-button>
+          <el-button @click.native="closeAddDialog">取消</el-button>
+          <el-button type="primary" @click.native="addSubmit" :loading="loading">提交</el-button>
         </div>
       </el-dialog>
 
-      <el-dialog title="编辑用户" :visible.sync ="editFormVisible" :close-on-click-modal="false">
+      <el-dialog title="编辑用户" :visible.sync ="editFormVisible"   :before-close="closeEditDialog">
         <el-form :model="editForm" label-width="100px" :rules="editFormRules" ref="editForm">
-          <el-form-item label="用户名" prop="loginname">
+          <el-form-item label="用户名" prop="userCode">
             <el-input v-model="editForm.userCode" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="真实姓名" prop="name">
+          <el-form-item label="真实姓名" prop="userName">
             <el-input v-model="editForm.userName" auto-complete="off"></el-input>
           </el-form-item>
 
@@ -111,12 +111,12 @@
           <el-form-item label="电子邮件" prop="email">
             <el-input v-model="editForm.email" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="联系电话" prop="phone">
+          <el-form-item label="联系电话" prop="telephone">
             <el-input v-model="editForm.telephone" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-          <el-button @click.native="editFormVisible = false">取消</el-button>
+          <el-button @click.native="closeEditDialog">取消</el-button>
           <el-button type="primary" @click.native="editSubmit">提交</el-button>
         </div>
       </el-dialog>
@@ -128,52 +128,15 @@
   import { mapGetters,mapActions } from "vuex";
 export default {
   name: 'UserList',
-  data(){
-    return {
-      //编辑相关数据
-      editFormVisible: false,//编辑界面是否显示
-
-      editForm: {
-        id: 0,
-        userCode:'',
-        userName: '',
-        type:0,
-        email:'',
-        telephone:''
-      },
-      //新增相关数据
-      addFormVisible: false,//新增界面是否显示
-      addLoading: false,
-      addForm: {
-        loginname:'',
-        name: '',
-        type:'',
-        sex:'',
-        email:'',
-        phone:'',
-        roleids:[],
-        rolename:''
-
-      },
-      typeoptions: [{
-        value: '0',
-        label: '智慧建筑管理平台用户'
-      },{
-        value: '1',
-        label: '防火实验室监控系统用户'
-      }],
-      rolesoptions:[]
-    }
-  },
   computed:{
-    ...mapGetters('UserStore',['users','filter','editFormRules']),
-    ...mapGetters('CommonStore',['loading','totalCount','maxResultCount'])
+    ...mapGetters('UserStore',['users','filter','editFormRules','editForm','addForm','typeoptions']),
+    ...mapGetters('CommonStore',['loading','totalCount','maxResultCount','editFormVisible','addFormVisible'])
   },
   methods: {
-    ...mapActions('UserStore',['bindUserInfo','selectUsersChange','delelteUser']),
+    ...mapActions('UserStore',['bindUserInfo','selectUsersChange','delelteUser','updateUser','createUser','showEditDialog','closeEditDialog','closeAddDialog','showAddDialog']),
     ...mapActions('CommonStore',['pageChange']),
     //性别显示转换
-    formattype:function(row,column){
+    formattype:function(row){
       if(row.type==0){
         return "普通用户";
       }else if(row.type==1){
@@ -207,90 +170,31 @@ export default {
       }).catch(() => {
       });
     },
-    //显示编辑界面
-    showEditDialog: function (index, row) {
-      this.editForm = Object.assign({}, row);
-      this.editFormVisible = true;
-      //var ids=row.roleids.split(',');
-     var intids=[];
-     for(var i=0;i<row.roleids.length;i++){
-       intids.push(parseInt(row.roleids[i]))
-     }
-      this.editForm.roleids=intids;
-    },
     //编辑
     editSubmit: function () {
-      let that = this;
       this.$refs.editForm.validate((valid) => {
         if (valid) {
-          //this.loading = true;
-          let para = Object.assign({}, this.editForm);
-          var parms={editType:1,json:encodeURI( JSON.stringify(para))};
-          this.$message.success({showClose: true, message: '修改成功', duration: 2000});
-          that.editFormVisible = false;
-         /* httpRequest.POST(`/datas/user/editUser`, parms).then(function (result) {
-            that.loading = false;
-            if (result && parseInt(result.IsSuccess) === 1) {
-              that.$message.success({showClose: true, message: '修改成功', duration: 2000});
-              that.$refs['editForm'].resetFields();
-              that.editFormVisible = false;
-              that.search();
-            } else {
-              that.$message.error({showClose: true, message: '修改失败', duration: 2000});
-            }
-          }, function (err) {
-            that.loading = false;
-            that.$message.error({showClose: true, message: err.toString(), duration: 2000});
-          }).catch(function (error) {
-            that.loading = false;
-            console.log(error);
-            that.$message.error({showClose: true, message: '请求出现异常', duration: 2000});
-          });*/
+          this.updateUser().then(data=>{
+            this.$message.success({showClose: true, message: '修改成功', duration: 2000});
+            this.$refs['editForm'].resetFields();
+            this.search();
+          }).catch(error=>{
+            this.$message.error({showClose: true, message: '修改失败:'+error.toString(), duration: 2000});
+          });
         }
       });
     },
-    showAddDialog: function () {
-      this.addFormVisible = true;
-      this.addForm = {
-        loginname:'',
-        name: '',
-        type:'',
-        sex:'',
-        email:'',
-        phone:'',
-        roleids:[],
-        rolename:''
-      };
-    },
     //新增
     addSubmit: function () {
-      let that = this;
       this.$refs.addForm.validate((valid) => {
         if (valid) {
-          that.loading = false;
-          let para = Object.assign({}, this.addForm);
-          var parms={editType:0,json:encodeURI( JSON.stringify(para))};
-          that.$message.success({showClose: true, message: '新增成功', duration: 2000});
-          that.addFormVisible = false;
-          /*httpRequest.POST(`/datas/user/editUser`, parms).then(function (result) {
-            that.loading = false;
-            if (result && parseInt(result.IsSuccess) === 1) {
-              that.$message.success({showClose: true, message: '新增成功', duration: 2000});
-              that.$refs['addForm'].resetFields();
-              that.addFormVisible = false;
-              that.search();
-            } else {
-              that.$message.error({showClose: true, message: '新增失败', duration: 2000});
-            }
-          }, function (err) {
-            that.loading = false;
-            that.$message.error({showClose: true, message: err.toString(), duration: 2000});
-          }).catch(function (error) {
-            that.loading = false;
-            console.log(error);
-            that.$message.error({showClose: true, message: '请求出现异常', duration: 2000});
-          });*/
-
+          this.createUser().then(data=>{
+            this.$message.success({showClose: true, message: '新增成功', duration: 2000});
+            this.$refs['addForm'].resetFields();
+            this.search();
+          }).catch(error=>{
+            this.$message.error({showClose: true, message: '新增失败'+error.toString(), duration: 2000});
+          });
         }
       });
     }

@@ -38,21 +38,28 @@ const  state={
 const getters = {
   loading: state => state.loading,
   editFormVisible: state => state.editFormVisible,
+  addFormVisible:state=>state.addFormVisible,
   selectFields:state=>state.selectFields,
   sorting: state => state.sorting,
   skipCount: state => state.skipCount,
   maxResultCount:state=>state.maxResultCount,
   totalCount:state=>state.totalCount
 };
-const  mutations={
-  [MutationTypes.SET_SKIPCOUNT]( state, pageindex){
-    state.skipCount=pageindex;
+const  mutations= {
+  [MutationTypes.SET_SKIPCOUNT](state, pageindex) {
+    state.skipCount = pageindex;
   },
-  [MutationTypes.SET_LOADING]( state, isloading){
-    state.loading=isloading;
+  [MutationTypes.SET_LOADING](state, isloading) {
+    state.loading = isloading;
   },
-  [MutationTypes.SET_TOTALCOUNT]( state, count){
-    state.totalCount=count;
+  [MutationTypes.SET_TOTALCOUNT](state, count) {
+    state.totalCount = count;
+  },
+  [MutationTypes.SET_EDITFORMVISIBLE](state, isshow) {
+    state.editFormVisible = isshow;
+  },
+  [MutationTypes.SET_AddFORMVISIBLE](state, isshow) {
+    state.addFormVisible = isshow;
   }
 };
 const  actions={
