@@ -82,7 +82,7 @@
     </ul>
     <div class="row" v-show="users.length>0">
       <div class="card" v-for="(user, index) in users" :key="index">
-      {{user.userName + index}}
+      我是 {{user.userName}}
       </div>
     </div>
   </div>
@@ -90,15 +90,15 @@
 </template>
 
 <script>
-  import { mapGetters,mapActions } from "vuex";
+import { mapGetters,mapActions } from "vuex";
 export default {
   computed: {
-    ...mapGetters(['mes', 'users'])
+    ...mapGetters('UserStore',['mes', 'users'])
   },
   created() {
-    this.getUserInfo();
+    this.bindUserInfo();
   },methods:{
-    ...mapActions(['getUserInfo'])
+    ...mapActions('UserStore',['bindUserInfo'])
   }
 }
 </script>

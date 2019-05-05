@@ -19,7 +19,7 @@
               <el-menu-item v-for="term in item.children" :key="term.path" :index="term.path" v-if="term.menuShow"
                             :class="$route.path==term.path?'is-active':''">
                 <template  >
-                   <i :class="term.iconCls"></i><span slot="title">{{term.name}}</span>
+                  <i :class="term.iconCls"></i><span slot="title">{{term.name}}</span>
                 </template>
               </el-menu-item>
             </el-submenu>
@@ -43,7 +43,6 @@
         </div>
       </section>
     </el-col>
-
   </el-row>
 </template>
 
@@ -60,10 +59,10 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['defaultActiveIndex','collapsed'])
+    ...mapGetters('TopStore',['defaultActiveIndex','collapsed'])
   },
   methods: {
-   ...mapActions(['handleSelect','collapse'])
+   ...mapActions('TopStore',['handleSelect','collapse'])
   },
   mounted() {
     let user = localStorage.getItem('access-user');

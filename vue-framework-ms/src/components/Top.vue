@@ -41,10 +41,10 @@
           }
         },
        computed:{
-          ...mapGetters(['fullscreen','collapsed','defaultActiveIndex'])
+          ...mapGetters('TopStore',['fullscreen','collapsed','defaultActiveIndex'])
        },
        methods:{
-          ...mapActions(['handleFullScreen','handleSelect']),
+          ...mapActions('TopStore',['handleFullScreen','handleSelect']),
          jumpTo(url){
            this.handleSelect(url);
            this.$router.push(url);

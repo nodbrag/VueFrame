@@ -16,7 +16,6 @@ axios.defaults.withCredentials = true;
 axios.interceptors.request.use(config => {
    //进度条开始
    NProgress.start();
-
    //if (store.getters.token)
    //{
    	  config.headers['Authorization'] ='Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4xIiwiZXhwIjoxNTU2NzkzOTM4LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDI1IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAzIn0.zDCq39_cN37L2kNXtSEkfrGj1jcaFKPcl_uohO0jBoY' ;// 让每个请求携带Authorization
@@ -40,7 +39,6 @@ export const POST = (url, params) => {
 };
 
 export const GET = (url, params) => {
-
   return axios.get(`${base}${url}`, {params: params}).then(res => res.data)
 };
 

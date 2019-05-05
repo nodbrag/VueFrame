@@ -107,6 +107,6 @@ export  default  class  BaseApi {
    * @public
    */
     async delete(parms){
-     return await  Http.POST(this._deleleApiUrl,parms);
+     return await  Http.POST(this._deleteApiUrl,parms);
     }
 }
