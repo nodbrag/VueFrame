@@ -1,0 +1,145 @@
+private ICellStyle getStyle(IWorkbook workbook,bool isBold, bool isDiagonalLine, short fontcolor,short fontsize,short backgroudcolor) {
+
+            ICellStyle style = workbook.CreateCellStyle();//创建样式对象
+            style.Alignment = HorizontalAlignment.Center;
+            style.VerticalAlignment = VerticalAlignment.Center;
+            style.WrapText = true; //设置换行前
+            IFont font = workbook.CreateFont(); //创建一个字体样式对象
+            font.FontName = "宋体"; //和excel里面的字体对应
+                                  //font.IsItalic = true; //斜体
+             
+            if (fontsize > 0)
+            {
+                font.FontHeightInPoints = fontsize;
+            }
+            if (fontcolor > 0)
+            {
+                font.Color = fontcolor;
+            }
+            if (isBold)
+            {
+                font.Boldweight = (short)FontBoldWeight.Bold;//字体加粗
+            }
+            style.SetFont(font); //将字体样式赋给样式对象
+            if (isDiagonalLine)
+            {
+                style.BorderDiagonalLineStyle = BorderStyle.Dashed;
+                style.BorderDiagonal = BorderDiagonal.Backward;
+                style.BorderDiagonalColor = IndexedColors.Black.Index;
+            }
+            if (backgroudcolor > 0)
+            {
+                style.FillForegroundColor = backgroudcolor; //具体数字代表的颜色看NPOI颜色对照表
+                style.FillPattern = FillPattern.SolidForeground;
+            }
+            return style;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ExportEnergyReportActualExcel(GaugeSnapshotDots.MonthlyReportInputDto input)
+        {
+            var newFile = AppDomain.CurrentDomain.BaseDirectory + "tempExcels" + DateTime.Now.Millisecond + ".xls";
+            if (System.IO.File.Exists(newFile))
+            {
+                System.IO.File.Delete(newFile);
+            }
+            using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write))
+            {
+
+                IWorkbook workbook = new XSSFWorkbook();
+                var sheet = workbook.CreateSheet("能源使用分析");
+                OkObjectResult res = await EnergyConsumeMonthlyReportEX(input);
+                ReportDots.ReportLineDataList info = (ReportDots.ReportLineDataList)res.Value;
+
+                /*生成头部*/
+                var header = sheet.CreateRow(0);
+                int cellindex = 0;
+                ICell cell00= header.CreateCell(0);
+                cell00.SetCellValue("日期   介质");
+                cell00.CellStyle = getStyle(workbook, true, true, -1, -1, -1);
+
+                var header2 = sheet.CreateRow(1);
+                //设置第一列宽度
+                sheet.SetColumnWidth(0, 16 * 300);
+                
+                //跨row
+                sheet.AddMergedRegion(new CellRangeAddress(0, 1, 0,0));
+                foreach (ReportDots.RData rData in info.datas) {
+
+                    for (int i = 0; i < rData.rows.Count; i++)
+                    {
+                        ICell cell = header.CreateCell(cellindex+1+ i);
+                        var cell2 = header2.CreateCell(cellindex + 1 + i);
+                        //设置列宽度
+                        sheet.SetColumnWidth(cellindex + 1+i, 12 * 300);
+                        cell2.SetCellValue(rData.rows[i]);
+                        cell2.CellStyle = getStyle(workbook, true, false, -1, -1, -1);
+                        if (i == 0)
+                        {
+                            cell.SetCellValue(rData.type);
+                            cell.CellStyle = getStyle(workbook, true, false, -1, -1, -1);
+                        }
+                    }
+                    //跨cell
+                    sheet.AddMergedRegion(new CellRangeAddress(0, 0, cellindex + 1, cellindex + rData.rows.Count));
+                    cellindex = cellindex + rData.rows.Count;
+                }
+                int rowindex = 0;
+                //生成row 第3行开始
+                for (int i = 0; i < info.datas[0].cols.Count; i++) {
+
+                    var datarow = sheet.CreateRow(rowindex + 2);
+                    var datarow1 = sheet.CreateRow(rowindex + 3);
+                    var datarow2 = sheet.CreateRow(rowindex + 4);
+
+                   
+                    sheet.AddMergedRegion(new CellRangeAddress(rowindex + 2, rowindex + 4, 0, 0));
+
+                    rowindex = rowindex + 3;
+                    //第一列固定是日期
+                    ICell cel01 = datarow.CreateCell(0);
+                    cel01.SetCellValue(info.datas[0].cols[i]);
+                    cel01.CellStyle = getStyle(workbook, false, false, -1, -1, -1);
+                    datarow.HeightInPoints = 43 * 300;
+                    int rcellindex = 1;
+                    for (var j = 0; j < info.datas.Count; j++)
+                    {
+                        
+                        //其他列
+                        for(var n = 0; n < info.datas[j].rows.Count; n++)
+                        {
+
+                            ICell cell = datarow.CreateCell(rcellindex + n);
+                            ICell cel2 = datarow1.CreateCell(rcellindex + n);
+                            ICell cel3 = datarow2.CreateCell(rcellindex + n);
+
+                           
+                            cell.SetCellValue("耗能:" + info.datas[j].item[n][i]);
+                            cell.CellStyle = getStyle(workbook, false, false, -1, -1, -1);
+
+                            cel2.SetCellValue("成本:" + info.datas[j].itemPrice[n][i]);
+                            cel2.CellStyle = getStyle(workbook, false, false, -1, -1, -1);
+
+                            cel3.SetCellValue("标煤:" + info.datas[j].itemStandardCoal[n][i]);
+                            cel3.CellStyle = getStyle(workbook, false, false, -1, -1, -1);
+
+                        }
+
+                        rcellindex = rcellindex + info.datas[j].rows.Count;
+                    }
+                    
+                }
+
+                workbook.Write(fs);
+            }
+
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(newFile, FileMode.Open))
+            {
+                stream.CopyTo(memory);
+            }
+            memory.Position = 0;
+            //删除临时数据
+            System.IO.File.Delete(newFile);
+            return File(memory, "application/vnd.ms-excel;charset=utf-8", "EMS_"+DateTime.Now.Millisecond+".xlsx");
+        }

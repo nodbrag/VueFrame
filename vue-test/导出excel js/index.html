@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+    <script type="text/javascript">
+
+        function download() {
+            var pams = { "year": "2019", "month": "2", "workCenterID": "1", "workAreaID": "14", "workShiftId": "1", "IsPrimary": true };
+
+        
+            var instance = axios.create({
+           
+                responseType: 'blob'//返回数据的格式，可选值为arraybuffer,blob,document,json,text,stream，默认值为json
+            })
+            instance.post("http://localhost:50025/api/GaugeSnapshot/ExportExcel", pams).then((res) => {
+                const content = res
+                const blob = new Blob([content.data], { type: "application/vnd.ms-excel;" })
+                
+               // const fileName = Date.parse(new Date()) +'.xlsx'
+                const fileName ='能源使用分析.xlsx'
+                if ('download' in document.createElement('a')) { // 非IE下载
+                    const elink = document.createElement('a')
+                    elink.download = fileName
+                    elink.style.display = 'none'
+                    elink.href = URL.createObjectURL(blob)
+                    document.body.appendChild(elink)
+                    elink.click()
+                    URL.revokeObjectURL(elink.href) // 释放URL 对象
+                    document.body.removeChild(elink)
+                } else { // IE10+下载
+                    navigator.msSaveBlob(blob, fileName)
+                }
+            });
+          
+        }
+
+
+         
+
+    </script>
+</head>
+
+<body>
+   
+    <a href="javascript:download()">下载报表文档</a>
+</body>
+</html>
