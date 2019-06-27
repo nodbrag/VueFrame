@@ -8,7 +8,7 @@ const  state={
   /**
    * 最大分页数量
    */
-  maxResultCount:5,
+  maxResultCount:10,
   /**
    * 当前记录页
    */
@@ -64,7 +64,6 @@ const  mutations= {
 };
 const  actions={
   pageChange({commit},pageindex){
-
     commit(MutationTypes.SET_SKIPCOUNT, pageindex);
   }
 };

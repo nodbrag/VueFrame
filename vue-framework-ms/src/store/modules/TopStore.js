@@ -3,12 +3,14 @@ import MutationTypes from "../MutationTypes";
 const state={
   defaultActiveIndex: "0",
   collapsed: false,
-  fullscreen:false
+  fullscreen:false,
+  nickname:""
 };
 const getters = {
   defaultActiveIndex: state => state.defaultActiveIndex,
   collapsed: state => state.collapsed,
-  fullscreen:state=>state.fullscreen
+  fullscreen:state=>state.fullscreen,
+  nickname:state=>state.nickname
 };
 const actions={
   /**
@@ -68,6 +70,9 @@ const mutations={
   },
   [MutationTypes.SET_DEFAULTACTIVEINDEX](state,{index}) {
     state.defaultActiveIndex=index;
+  },
+  [MutationTypes.SET_NICKNAME](state,username){
+    state.nickname=username;
   }
 };
 

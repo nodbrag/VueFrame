@@ -3,19 +3,23 @@
  */
 export  default  class MutationTypes {
 
-  //用户模块
   /**
-   * 设置用户列表数据
+   * 设置当前登录用户
+   * @type {string}
+   */
+  static  SET_NICKNAME='SET_NICKNAME';
+  /**
+   * 设置列表数据
    * @type {string}
    */
  static  SET_LISTData='SET_LISTData';
   /**
-   * 设置选中用户记录数据
+   * 设置选中记录数据
    * @type {string}
    */
  static  SET_SELECTUSERS='SET_SELECTUSERS';
   /**
-   * 用户编辑FROM
+   * 编辑FROM
    * @type {string}
    */
  static SET_EDITFORM='SET_EDITFORM';
@@ -31,6 +35,7 @@ export  default  class MutationTypes {
    * @type {string}
    */
   static  SET_COLLAPSED='SET_COLLAPSED';
+
   /**
    * 设置菜单选中标识状态
    * @type {string}

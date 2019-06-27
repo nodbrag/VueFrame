@@ -5,7 +5,7 @@
   </div>
 
   <div class="topbar-title">
-    <span style="font-size: 18px;color: #fff;">质量控制管理系统</span>
+    <span style="font-size: 18px;color: #fff;">VueDemo管理系统</span>
   </div>
 
   <div class="topbar-account topbar-btn">
@@ -35,13 +35,8 @@
   import { mapGetters,mapActions } from "vuex";
     export default {
         name: "Top",
-        data(){
-          return {
-            nickname: '超级管理员'
-          }
-        },
        computed:{
-          ...mapGetters('TopStore',['fullscreen','collapsed','defaultActiveIndex'])
+          ...mapGetters('TopStore',['fullscreen','collapsed','nickname','defaultActiveIndex'])
        },
        methods:{
           ...mapActions('TopStore',['handleFullScreen','handleSelect']),
@@ -55,7 +50,7 @@
              confirmButtonClass: 'el-button--warning'
            }).then(() => {
              //确认
-             localStorage.removeItem('access-user');
+             localStorage.removeItem('token');
              that.$router.go('/login'); //用go刷新
            }).catch(() => {});
          }

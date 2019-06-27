@@ -80,8 +80,8 @@
         </a>
       </li>
     </ul>
-    <div class="row" v-show="users.length>0">
-      <div class="card" v-for="(user, index) in users" :key="index">
+    <div class="row" v-show="datalist.length>0">
+      <div class="card" v-for="(user, index) in datalist" :key="index">
       我是 {{user.userName}}
       </div>
     </div>
@@ -93,12 +93,12 @@
 import { mapGetters,mapActions } from "vuex";
 export default {
   computed: {
-    ...mapGetters('UserStore',['mes', 'users'])
+    ...mapGetters('UserStore',['mes', 'datalist'])
   },
   created() {
-    this.bindUserInfo();
+    this.bindInfos();
   },methods:{
-    ...mapActions('UserStore',['bindUserInfo'])
+    ...mapActions('UserStore',['bindInfos'])
   }
 }
 </script>
