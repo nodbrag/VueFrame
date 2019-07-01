@@ -25,7 +25,7 @@ export  class BaseMethods {
   /**
    * 列表数据加载
    */
-  search=function(){
+   search=function(){
     this.bindInfos().then((datas)=>{
       this.$message.success({showClose: true, message: '数据加载完成', duration: 2000});
     }).catch((error)=>{
@@ -113,7 +113,6 @@ export  class BaseComputed {
   set MapComputed(obj){
     this.map=obj;
   }
-
 }
 
 export default class  BaseView {

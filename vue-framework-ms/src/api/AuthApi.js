@@ -5,7 +5,6 @@ export default class AuthApi  {
    * @type {string}
    */
     tokenUrl="/api/Auth/Token";
-
   /**
    * 获取授权数据
    * @param parms

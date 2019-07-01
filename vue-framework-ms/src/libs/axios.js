@@ -44,11 +44,9 @@ export const GET = (url, params) => {
 export const PUT = (url, params) => {
   return axios.put(`${base}${url}`, params).then(res => res.data)
 };
-
 export const DELETE = (url, params) => {
   return axios.delete(`${base}${url}`, {params: params}).then(res => res.data)
 };
-
 export const PATCH = (url, params) => {
   return axios.patch(`${base}${url}`, params).then(res => res.data)
 };
