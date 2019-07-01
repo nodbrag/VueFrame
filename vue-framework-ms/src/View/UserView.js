@@ -1,6 +1,9 @@
 import { mapGetters } from "vuex";
 import BaseView, {BaseComputed, BaseMethods} from "../View/BaseView";
 
+/**
+ * UI 层方法
+ */
 class UserMethods extends  BaseMethods{
   /**
    * 用户类型
