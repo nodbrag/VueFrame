@@ -8,11 +8,11 @@
     </el-col>
     <el-col :span="24" class="warp-main" v-loading="loading" element-loading-text="拼命加载中">
       <!--工具条-->
-      <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
+      <el-col :span="24" class="toolbar" style="padding-bottom:0px;">
         <el-form :inline="true" :model="filter">
           <el-form-item>
             <el-input v-model="filter.RoleName" placeholder="角色名"
-                      style="min-width: 240px;" @keyup.enter.native="search"></el-input>
+                      style="min-width: 240px;"  @keyup.enter.native="search"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" v-on:click="search">查询</el-button>
@@ -23,7 +23,7 @@
         </el-form>
       </el-col>
       <!--列表-->
-      <el-table :data="datalist" highlight-current-row @selection-change="selectinfos"
+      <el-table :data="datalist" highlight-current-row @selection-change="selectInfos"
                 style="width: 100%;">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column type="index" width="60">
@@ -39,14 +39,12 @@
           </template>
         </el-table-column>
       </el-table>
-
       <!--工具条-->
       <el-col :span="24" class="toolbar">
         <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="maxResultCount" :total="totalCount"
                        style="float:right;">
         </el-pagination>
       </el-col>
-
       <!--新增界面-->
       <el-dialog title="新增角色" :visible.sync ="addFormVisible"  :before-close="closeAddDialog">
         <el-form :model="addForm" label-width="80px" :rules="editFormRules" ref="addForm">
@@ -81,8 +79,8 @@
   </el-row>
 </template>
 <script>
-  import RoleList from '../View/RoleList';
-  export default new RoleList()
+  import RoleView from '../View/RoleView';
+  export default new RoleView()
 </script>
 <style scoped>
 

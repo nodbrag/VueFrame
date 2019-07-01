@@ -1,11 +1,8 @@
 import MutationTypes from "@/store/MutationTypes";
-import Vue from 'vue';
-let vue=new Vue();
 /**
  * 角色状态类
  */
 class AuthState  {
-
   account= {
     userCode: '',
     password: ''
@@ -13,11 +10,9 @@ class AuthState  {
   editFormRules={
     userCode: [
       {required: true, message: '请输入账号', trigger: 'blur'},
-      //{ validator: validaePass }
     ],
     password: [
       {required: true, message: '请输入密码', trigger: 'blur'},
-      //{ validator: validaePass2 }
     ]
   }
 }
@@ -26,7 +21,7 @@ class AuthState  {
  */
 class AuthActions
 {
-   login=function({commit,state, rootGetters },api) {
+   login=({commit,state, rootGetters },api)=>{
      let parms = Object.assign({}, state.account);
      commit('CommonStore/' + MutationTypes.SET_LOADING, true, {root: true});
      return new Promise((resolve, reject) => {

@@ -4,6 +4,11 @@
 export  default  class MutationTypes {
 
   /**
+   * 修改api
+   * @type {string}
+   */
+  static  SET_API='SET_API';
+  /**
    * 设置当前登录用户
    * @type {string}
    */

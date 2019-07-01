@@ -1,4 +1,3 @@
-import UserApi from '../../api/UserApi'
 import User from '../../model/User'
 import {BaseActions, BaseGetters, BaseMutations, BaseState} from "./BaseStore";
 /**
@@ -9,7 +8,6 @@ class UserState extends  BaseState {
    constructor()
    {
       super(new User());
-      this.init();
    }
   /**
    * 用户类型数据字典
@@ -22,36 +20,31 @@ class UserState extends  BaseState {
     value: '1',
     label: '管理用户'
   }];
+
   /**
-   * 状态初始化
+   * 过滤条件
+   * @type {{UserName: string}}
    */
-   init()
-   {
-     /**
-      * 过滤条件
-      * @type {{UserName: string}}
-      */
-      this.filter={ UserName: '' };
 
-     /**
-      * Form验证规则
-      */
-      this.editFormRules =
-       {
-         userName: [
-           {required: true, message: '请输入真实姓名', trigger: 'blur'}
-         ],
-         userCode: [
-           {required: true, message: '请输入用户名', trigger: 'blur'}
-         ], email: [
-           {required: true, message: '请输入电子邮件', trigger: 'blur'}
-         ], telephone: [
-           {required: true, message: '请输入联系电话', trigger: 'blur'}
-         ]
-       };
-   }
+   filter = { UserName: '' };
+
+  /**
+   * Form验证规则
+   */
+   editFormRules =
+    {
+      userName: [
+        {required: true, message: '请输入真实姓名', trigger: 'blur'}
+      ],
+      userCode: [
+        {required: true, message: '请输入用户名', trigger: 'blur'}
+      ], email: [
+        {required: true, message: '请输入电子邮件', trigger: 'blur'}
+      ], telephone: [
+        {required: true, message: '请输入联系电话', trigger: 'blur'}
+      ]
+    };
 }
-
 /**
  * get类
  */
@@ -62,7 +55,7 @@ class UserGetters extends  BaseGetters {
 /**
  * action 类
  */
-class UserActions extends  BaseActions{
+export class UserActions extends  BaseActions{
 }
 /**
  * mutaions

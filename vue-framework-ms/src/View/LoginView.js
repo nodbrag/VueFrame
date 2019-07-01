@@ -23,7 +23,7 @@ export  default  class LoginView{
       this.$refs.AccountFrom.validate((valid) => {
         if (valid) {
            this.login(api).then((data)=>{
-             this.$router.push({path: '/userlist'});
+             this.$router.push({path: '/User'});
            }).catch((error)=>{
              this.$message.error({showClose: true, message:error || '登录失败', duration: 2000});
            })

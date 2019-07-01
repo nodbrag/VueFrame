@@ -1,5 +1,6 @@
 import MutationTypes from "../MutationTypes";
 import Vue from 'vue';
+
 let vue=new Vue();
 /**
  * state  基类
@@ -35,6 +36,7 @@ export  class  BaseState {
   /**
    * 搜索过滤条件
    * @type {{UserName: string}}
+   * @public
    */
   filter = { };
 
@@ -42,6 +44,10 @@ export  class  BaseState {
    * 验证规则
    */
   editFormRules = {};
+   /*
+   * api对象
+   * */
+   api={};
 
   constructor(obj){
     this.addForm=obj;
@@ -61,41 +67,42 @@ export  class BaseGetters
   editFormRules=state=>state.editFormRules;
   editForm=state=>state.editForm;
   addForm=state=>state.addForm;
+  api=state=>state.api;
 }
-
 /**
  * Mutation 基类
  */
 export  class  BaseMutations {
-  [MutationTypes.SET_LISTData]=function(state, {datas}) {
+  [MutationTypes.SET_LISTData]=(state, {datas})=>{
     state.datalist = datas;
   };
-  [MutationTypes.SET_SELECTUSERS]=function(state, selectdatas) {
+  [MutationTypes.SET_SELECTUSERS]=(state, selectdatas)=>{
     state.selectdatas = selectdatas;
   };
-  [MutationTypes.SET_EDITFORM]=function(state,editobj) {
+  [MutationTypes.SET_EDITFORM]=(state,editobj)=>{
     state.editForm = editobj;
   };
+  [MutationTypes.SET_API]=(state,api)=>{
+    state.api=api;
+  }
 }
-
 /**
  * action 基类
  */
 export class  BaseActions {
-  /**
+   /**
    * 绑定列表信息
    * @param commit
    * @param state
    * @param rootGetters
    */
-    bindInfos=function({commit,state, rootGetters },api) {
+   bindInfos=({commit,state, rootGetters })=>{
     let maxResultCount = rootGetters['CommonStore/maxResultCount'];
     let skipCount = rootGetters['CommonStore/skipCount'];
     let parms = {filter: state.filter, maxResultCount: maxResultCount, skipCount: skipCount};
     commit('CommonStore/' + MutationTypes.SET_LOADING, true, {root: true});
     return new Promise((resolve, reject) => {
-
-      api.getAll(parms).then(data => {
+       state.api.getAll(parms).then(data => {
         let success = data.success;
         if (success){
           let datas = data.result.items;
@@ -104,12 +111,10 @@ export class  BaseActions {
           commit('CommonStore/' + MutationTypes.SET_TOTALCOUNT, count, {root: true});
           resolve(datas);
         } else {
-          vue.$message.error({showClose: true, message: data.error.toString(), duration: 2000});
           reject(new Error(data.error))
         }
         commit('CommonStore/' + MutationTypes.SET_LOADING, false, {root: true});
       }).catch(error=>{
-        vue.$message.error({showClose: true, message: error.toString(), duration: 2000});
         reject(error);
       })
     });
@@ -119,26 +124,25 @@ export class  BaseActions {
    * @param commit
    * @param selectusers
    */
-  selectInfos=function({commit},selectdatas){
+  selectInfos=({commit},selectdatas)=>{
     commit(MutationTypes.SET_SELECTUSERS, selectdatas);
   };
   /**
    * 显示编辑弹出框
    * @param commit
-   * @param state
    * @param row
    */
-  showEditDialog=function({commit,state},row){
+  showEditDialog=({commit},row)=>{
     commit(MutationTypes.SET_EDITFORM, Object.assign({}, row));
     commit('CommonStore/' + MutationTypes.SET_EDITFORMVISIBLE, true, {root: true});
   };
-  closeEditDialog=function({commit,state}){
+  closeEditDialog=({commit})=>{
     commit('CommonStore/' + MutationTypes.SET_EDITFORMVISIBLE, false, {root: true});
   };
-  showAddDialog=function({commit}){
+  showAddDialog=({commit})=>{
     commit('CommonStore/' + MutationTypes.SET_AddFORMVISIBLE, true, {root: true});
   };
-  closeAddDialog=function({commit}){
+  closeAddDialog=({commit})=>{
     commit('CommonStore/' + MutationTypes.SET_AddFORMVISIBLE, false, {root: true});
   };
   /**
@@ -147,14 +151,14 @@ export class  BaseActions {
    * @param state
    * @returns {Promise<any>}
    */
-  create=function({commit,state},api){
+  create=({commit,state,rootGetters})=>{
     let obj = Object.assign({}, state.addForm);
     commit('CommonStore/' + MutationTypes.SET_LOADING, true, {root: true});
     return new Promise((resolve, reject) => {
-      api.create(obj).then(data=>{
+      state.api.create(obj).then(data=>{
         let success = data.success;
         if (success) {
-          vue.$message.success({showClose: true, message: '新增成功', duration: 2000});
+          this.bindInfos.call(this,{commit,state,rootGetters});
           resolve();
         }else{
           reject(new Error(data.error))
@@ -172,22 +176,22 @@ export class  BaseActions {
    * @param user
    * @returns {Promise<any>}
    */
-  update=function({commit,state,rootGetters},api){
+  update=({commit,state,rootGetters})=>{
     let obj = Object.assign({}, state.editForm);
     commit('CommonStore/' + MutationTypes.SET_LOADING, true, {root: true});
     return new Promise((resolve, reject) => {
-      api.update(obj).then(data=>{
+      state.api.update(obj).then(data=>{
         let success = data.success;
         if (success) {
+          this.bindInfos.call(this,{commit,state,rootGetters});
           resolve();
-          vue.$message.success({showClose: true, message: '修改成功', duration: 2000});
         }else{
           reject(new Error(data.error));
         }
         commit('CommonStore/' + MutationTypes.SET_EDITFORMVISIBLE, false, {root: true});
         commit('CommonStore/' + MutationTypes.SET_LOADING, false, {root: true});
       }).then(error=>{
-        reject(error);
+          reject(error);
       })
     });
   };
@@ -197,16 +201,14 @@ export class  BaseActions {
    * @param id
    * @returns {Promise<any>}
    */
-  delete=function({commit},arrobj){
-    let parms=arrobj[0];
-    let api=arrobj[1];
+  delete=({commit,state,rootGetters},parms)=>{
     return new Promise((resolve, reject) => {
       vue.$confirm('确认删除该记录吗?', '提示', {type: 'warning'}).then(() => {
         commit('CommonStore/' + MutationTypes.SET_LOADING, true, {root: true});
-       api.delete(parms).then(data => {
+       state.api.delete(parms).then(data => {
           let success = data.success;
           if (success) {
-            vue.$message.success({showClose: true, message: '删除成功', duration: 1500});
+            this.bindInfos.call(this,{commit,state,rootGetters});
             resolve();
           } else {
             reject(new Error(data.error))

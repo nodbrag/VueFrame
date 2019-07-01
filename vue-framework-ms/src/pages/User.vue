@@ -23,7 +23,7 @@
         </el-form>
       </el-col>
       <!--列表-->
-      <el-table :data="datalist" highlight-current-row @selection-change="selectinfos"
+      <el-table :data="datalist" highlight-current-row @selection-change="selectInfos"
                 style="width: 100%;">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column type="index" width="60">
@@ -48,14 +48,12 @@
           </template>
         </el-table-column>
       </el-table>
-
       <!--工具条-->
       <el-col :span="24" class="toolbar">
         <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="maxResultCount" :total="totalCount"
                        style="float:right;">
         </el-pagination>
       </el-col>
-
       <!--新增界面-->
       <el-dialog title="新增用户" :visible.sync ="addFormVisible"  :before-close="closeAddDialog">
         <el-form :model="addForm" label-width="80px" :rules="editFormRules" ref="addForm">
@@ -82,7 +80,7 @@
           <el-form-item label="固定电话" prop="telephone">
             <el-input v-model="addForm.telephone" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="移动电话" prop="telephone">
+          <el-form-item label="移动电话" prop="mobilePhone">
             <el-input v-model="addForm.mobilePhone" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
@@ -118,7 +116,7 @@
           <el-form-item label="固定电话" prop="telephone">
             <el-input v-model="editForm.telephone" auto-complete="off"></el-input>
           </el-form-item>
-          <el-form-item label="移动电话" prop="telephone">
+          <el-form-item label="移动电话" prop="mobilePhone">
             <el-input v-model="editForm.mobilePhone" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
@@ -131,8 +129,8 @@
   </el-row>
 </template>
 <script>
-import UserList from '../View/UserList'
-export default new UserList();
+import UserView from '../View/UserView'
+export default new UserView();
 </script>
 
 <style scoped>

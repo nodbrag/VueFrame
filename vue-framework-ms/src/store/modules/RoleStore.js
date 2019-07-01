@@ -9,33 +9,25 @@ class RoleState extends  BaseState {
   constructor()
   {
       super(new Role());
-      this.init()
   }
-  init()
-  {
-    /**
-     * 过滤条件
-     * @type {{RoleName: string}}
-     */
-      this.filter={ RoleName: '' };
-  }
+  filter={ RoleName: '' }
 }
 /**
  * action 基类
  */
-class RoleActions extends  BaseActions{
+export class RoleActions extends  BaseActions{
 }
 /**
  * getters 基类
  */
 class RoleGetters extends  BaseGetters {
+
 }
 /**
  * mutaions
  */
 class RoleMutations extends BaseMutations {
 }
-
 export  default
 {
   namespaced: true,
