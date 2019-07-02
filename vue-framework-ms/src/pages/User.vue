@@ -41,8 +41,9 @@
         </el-table-column>
         <el-table-column prop="mobilePhone" label="移动电话" min-width="120" sortable>
         </el-table-column>
-        <el-table-column label="操作" width="150">
+        <el-table-column label="操作" width="250">
           <template slot-scope="scope">
+            <el-button size="small" @click="">域授权</el-button>
             <el-button size="small" @click="showEditDialog(scope.row)">编辑</el-button>
             <el-button type="danger" @click="del('userId',scope.row.userId)" size="small">删除</el-button>
           </template>
@@ -68,9 +69,9 @@
             <el-select v-model="addForm.userRoleId" placeholder="请选择">
               <el-option
                 v-for="item in typeoptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
+                :key="item.id"
+                :label="item.name"
+                :value="item.id">
               </el-option>
             </el-select>
           </el-form-item>
@@ -103,9 +104,9 @@
             <el-select v-model="editForm.userRoleId"  placeholder="请选择">
               <el-option
                 v-for="item in typeoptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
+                :key="item.id"
+                :label="item.name"
+                :value="item.id">
               </el-option>
             </el-select>
           </el-form-item>

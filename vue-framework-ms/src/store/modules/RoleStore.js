@@ -21,7 +21,6 @@ export class RoleActions extends  BaseActions{
  * getters 基类
  */
 class RoleGetters extends  BaseGetters {
-
 }
 /**
  * mutaions

@@ -5,9 +5,12 @@ import  TopStore from './modules/TopStore'
 import  CommonStore from './modules/CommonStore'
 import  RoleStore from './modules/RoleStore'
 import  AuthStore from './modules/AuthStore'
+import CommonDictionaryStore from './modules/CommonDictionaryStore'
 import UserApi from "../api/UserApi";
 import MutationTypes from './MutationTypes'
 import RoleApi from "../api/RoleApi";
+import CommonDictionaryApi from "../api/CommonDictionaryApi";
+
 //注入插件Vuex
 Vue.use(Vuex);
 let store= new Vuex.Store({
@@ -17,6 +20,7 @@ let store= new Vuex.Store({
     ,CommonStore
     ,RoleStore
     ,AuthStore
+    ,CommonDictionaryStore
   }
 });
 /**
@@ -24,4 +28,5 @@ let store= new Vuex.Store({
  */
 store.commit('UserStore/' + MutationTypes.SET_API, new UserApi(), {root: true});
 store.commit('RoleStore/' + MutationTypes.SET_API, new RoleApi(), {root: true});
+store.commit('CommonDictionaryStore/' + MutationTypes.SET_API, new CommonDictionaryApi(), {root: true});
 export  default store;

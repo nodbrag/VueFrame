@@ -50,8 +50,8 @@
              confirmButtonClass: 'el-button--warning'
            }).then(() => {
              //确认
-             localStorage.removeItem('token');
-             that.$router.go('/login'); //用go刷新
+             localStorage.clear();
+             that.$router.go('/login'); //用go刷新;
            }).catch(() => {});
          }
        }

@@ -32,8 +32,9 @@
         </el-table-column>
         <el-table-column prop="description" label="备注" width="280" sortable>
         </el-table-column>
-        <el-table-column label="操作" width="150">
+        <el-table-column label="操作" width="250">
           <template slot-scope="scope">
+            <el-button size="small" @click="">菜单授权</el-button>
             <el-button size="small" @click="showEditDialog(scope.row)">编辑</el-button>
             <el-button type="danger" @click="del('roleId',scope.row.roleId)" size="small">删除</el-button>
           </template>

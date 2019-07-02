@@ -105,6 +105,7 @@ export class  BaseActions {
        state.api.getAll(parms).then(data => {
         let success = data.success;
         if (success){
+          console.log(JSON.stringify(data));
           let datas = data.result.items;
           let count=data.result.totalCount;
           commit(MutationTypes.SET_LISTData, {datas});

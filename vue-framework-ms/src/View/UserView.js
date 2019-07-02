@@ -1,6 +1,5 @@
 import { mapGetters } from "vuex";
 import BaseView, {BaseComputed, BaseMethods} from "../View/BaseView";
-
 /**
  * UI 层方法
  */
@@ -11,13 +10,12 @@ class UserMethods extends  BaseMethods{
    * @returns {string}
    */
   formattype=function (row) {
-    if(row.type==0){
-      return "普通用户";
-    }else if(row.type==1){
-      return "系统用户";
-    }else{
-      return "管理用户";
-    }
+    let rolelist= JSON.parse(window.localStorage.getItem("role"));
+    let role= rolelist.find((obj)=>obj.id==row.userRoleId);
+    if(role!=undefined)
+      return role.name;
+    else
+      return "";
   };
   /**
    * 返回 vuex 混入的方法

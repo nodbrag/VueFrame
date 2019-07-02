@@ -11,9 +11,9 @@ export  class BaseMethods {
       ...mapActions('CommonStore',['pageChange']),
      };
     if(obj.MapMethods!=undefined)
-       return  Object.assign(Object.assign(newmethod,obj.MapMethods),obj);
+       return {...newmethod,...obj.MapMethods,...obj}; //Object.assign(Object.assign(newmethod,obj.MapMethods),obj);
     else
-      return  Object.assign(newmethod,obj);
+      return {...newmethod,...obj}; // Object.assign(newmethod,obj);
   }
 
   get MapMethods(){
@@ -100,11 +100,10 @@ export  class BaseComputed {
       ...mapGetters(store, ['datalist', 'filter', 'editFormRules', 'editForm', 'addForm']),
       ...mapGetters('CommonStore', ['loading', 'totalCount', 'maxResultCount', 'editFormVisible', 'addFormVisible'])
     };
-
     if (obj.MapComputed != undefined)
-      return Object.assign(Object.assign(newcomputed, obj.MapComputed), obj);
+      return {...newcomputed,...obj.MapComputed,...obj };//Object.assign(Object.assign(newcomputed, obj.MapComputed), obj);
     else
-      return Object.assign(newcomputed, obj);
+      return {...newcomputed,...obj };//Object.assign(newcomputed, obj);
   }
 
   get MapComputed(){

@@ -5,29 +5,21 @@ import {BaseActions, BaseGetters, BaseMutations, BaseState} from "./BaseStore";
  */
 class UserState extends  BaseState {
 
-   constructor()
-   {
-      super(new User());
+   constructor() {
+     super(new User());
+     let types=JSON.parse(localStorage.getItem("role"));
+     this.typeoptions.push(...types);
    }
   /**
    * 用户类型数据字典
    * @type {*[]}
    */
-  typeoptions = [{
-    value: '0',
-    label: '普通用户'
-  }, {
-    value: '1',
-    label: '管理用户'
-  }];
-
+  typeoptions =[{id:0,name:" "}];
   /**
    * 过滤条件
    * @type {{UserName: string}}
    */
-
    filter = { UserName: '' };
-
   /**
    * Form验证规则
    */
@@ -62,7 +54,6 @@ export class UserActions extends  BaseActions{
  */
 class UserMutations extends BaseMutations {
 }
-
 export  default
 {
   namespaced: true,
